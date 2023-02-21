@@ -1,5 +1,6 @@
 from unit import BaseUnit
 
+
 class BaseSingleton(type):
     _instances = {}
 
@@ -15,12 +16,16 @@ class Arena(metaclass=BaseSingleton):
     player = None
     enemy = None
     game_is_running = False
+    # итоговый резалт всей битвы
+    battle_result = None
 
     def start_game(self, player: BaseUnit, enemy: BaseUnit):
         # TODO НАЧАЛО ИГРЫ -> None
         # TODO присваиваем экземпляру класса аттрибуты "игрок" и "противник"
         # TODO а также выставляем True для свойства "началась ли игра"
-        pass
+        self.player = player
+        self.enemy = enemy
+        self.game_is_running = True
 
     def _check_players_hp(self):
         # TODO ПРОВЕРКА ЗДОРОВЬЯ ИГРОКА И ВРАГА
@@ -28,7 +33,15 @@ class Arena(metaclass=BaseSingleton):
         # TODO может быть три результата:
         # TODO Игрок проиграл битву, Игрок выиграл битву, Ничья и сохраняем его в аттрибуте (self.battle_result)
         # TODO если Здоровья игроков в порядке то ничего не происходит
-        pass
+        if self.player.hp > 0 and self.enemy.hp > 0:
+            return None
+
+        if self.player.hp <= 0 and self.enemy.hp <= 0:
+            self.battle_result = 'Ничья'
+        elif self.player.hp <= 0:
+            self.battle_result = 'Противник победил'
+        else:
+            self.battle_result = 'Игрок победил'
 
     def _stamina_regeneration(self):
         # TODO регенерация здоровья и стамины для игрока и врага за ход

@@ -1,11 +1,15 @@
+from flask import Flask, render_template
+from base import Arena
+
+
 app = Flask(__name__)
 
 heroes = {
-    "player": BaseUnit,
-    "enemy": BaseUnit
+    "player": None,
+    "enemy": None
 }
 
-arena =  ... # TODO инициализируем класс арены
+arena = Arena()  # TODO инициализируем класс арены
 
 
 @app.route("/")
@@ -19,6 +23,7 @@ def start_fight():
     # TODO выполняем функцию start_game экземпляра класса арена и передаем ему необходимые аргументы
     # TODO рендерим экран боя (шаблон fight.html)
     pass
+
 
 @app.route("/fight/hit")
 def hit():
