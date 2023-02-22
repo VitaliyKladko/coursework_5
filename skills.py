@@ -1,9 +1,5 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from unit import BaseUnit
 
 
 class Skill(ABC):
@@ -35,7 +31,7 @@ class Skill(ABC):
     def _is_stamina_enough(self):
         return self.user.stamina > self.stamina
 
-    def use(self, user: BaseUnit, target: BaseUnit) -> str:
+    def use(self, user, target) -> str:
         """
         Проверка, достаточно ли выносливости у игрока для применения умения.
         Для вызова скилла везде используем просто use

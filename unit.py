@@ -1,9 +1,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from equipment import Equipment, Weapon, Armor
+from equipment import Weapon, Armor
 from classes import UnitClass
 from random import randint
-from typing import Optional
 
 
 class BaseUnit(ABC):
@@ -38,7 +37,7 @@ class BaseUnit(ABC):
     def equip_armor(self, armor: Armor):
         # TODO одеваем новую броню
         self.armor = armor
-        return f"{self.name} экипирован броней {self.weapon.name}"
+        return f"{self.name} экипирован броней {self.armor.name}"
 
     def _count_damage(self, target: BaseUnit) -> int:
         # TODO Эта функция должна содержать:
@@ -60,7 +59,7 @@ class BaseUnit(ABC):
         target.get_damage(damage)
         return damage
 
-    def get_damage(self, damage: int) -> Optional[int]:
+    def get_damage(self, damage: int):
         # TODO получение урона целью
         #      присваиваем новое значение для аттрибута self.hp
         if damage > 0:
